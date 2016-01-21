@@ -10,16 +10,20 @@ describe("quotientGreaterThanOne", function(){
   });
 });
 
-describe("returnWholeQuotient", function(){
+describe("wholeQuotient", function(){
   it("Will return whole number based on quotient", function(){
-    expect(returnWholeQuotient(14,10)).to.equal(1);
+    expect(wholeQuotient(100,10)).to.equal(10);
   });
 });
 
+describe("createArray", function(){
+  it("Will take an integer and build an array of roman numeral counts", function(){
+    expect(createArray(14)).to.eql([0,0,0,0,1,0,4]);
+  });
+});
 
-
-// describe("numChopper", function(){
-//   it("Will return an array of integers that correspond to given groupings", function(){
-//     expect(numChopper(14)).to.eql([4,0,1,0,0,0,0]);
-//   });
-// });
+describe("convertToRoman", function(){
+  it("Will take an integer and convert it into roman numerals", function(){
+    expect(convertToRoman(14)).to.equal("XIV")
+  })
+})

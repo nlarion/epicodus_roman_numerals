@@ -8,8 +8,8 @@ var romanNums = {
   M: 1000
 };
 
-
-
+var numberArr = [1000, 500, 100, 50, 10, 5, 1];
+var romanArr = ["M", "D", "C", "L", "X", "V", "I"]
 
 var typeChecker = function(userNum){
   if(typeof(userNum) !== "number"){
@@ -27,12 +27,42 @@ var quotientGreaterThanOne = function(userNum, divisor){
   }
 };
 
-var returnWholeQuotient =  function(numerator,divisor){
+var wholeQuotient =  function(numerator,divisor){
   return parseInt(numerator/divisor);
 };
 
-// var numChopper = function(integer){
-//
-//   for
-//
-// }
+var createArray = function(userNum){
+  var Arr = [];
+  for (var i = 0; i < numberArr.length; i++) {
+    if(quotientGreaterThanOne(userNum,numberArr[i])){
+      var ret = wholeQuotient(userNum,numberArr[i]);
+      Arr.push(ret);
+      userNum = userNum-(numberArr[i]*ret);
+    } else{
+      Arr.push(0);
+    }
+  } return Arr;
+};
+
+
+var convertToRoman = function(userNum){
+  var retString = "";
+  if (typeChecker(userNum)) {
+    var arr = createArray(userNum);
+    for (var i = 0; i < arr.length; i++) {
+      if(arr[i] < 4 && arr[i] !== 0){
+
+        for (var j = 0; j < arr[i]; j++) {
+          retString += romanArr[i];
+        }
+      } else if(arr[i] === 4) {
+        retString += romanArr[i];
+        retString += romanArr[i-1];
+      }
+    }
+    return retString;
+  }else{
+    return false;
+  }
+
+};
