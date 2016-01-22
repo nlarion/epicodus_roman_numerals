@@ -45,7 +45,7 @@ var createArray = function(userNum){
 };
 
 var romanReturn =  function(num, pos){
-  var roman = [["D","M"],["C","D","M"],["X","L","C"],["I","V","X"]];
+  var roman = [["M"],["C","D","M"],["X","L","C"],["I","V","X"]];
   var char = "";
   if(num > 0 && num < 4){
     for (var i = 0; i < num; i++) {
