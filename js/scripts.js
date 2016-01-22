@@ -1,21 +1,21 @@
-var romanNums = {
-  I: 1,
-  V: 5,
-  X: 10,
-  L: 50,
-  C: 100,
-  D: 500,
-  M: 1000
-};
+// var romanNums = {
+//   I: 1,
+//   V: 5,
+//   X: 10,
+//   L: 50,
+//   C: 100,
+//   D: 500,
+//   M: 1000
+// };
 
-var numberArr = [1000, 500, 100, 50, 10, 5, 1];
-var romanArr = ["M", "D", "C", "L", "X", "V", "I"]
+var numberArr = [1000, 100, 10, 1];
+var romanArr = ["M", "D", "C", "L", "X", "V", "I"];
 
 var typeChecker = function(userNum){
-  if(typeof(userNum) !== "number"){
-    return false;
-  } else {
+  if(!isNaN(userNum)){
     return true;
+  } else {
+    return false;
   }
 };
 
@@ -44,25 +44,47 @@ var createArray = function(userNum){
   } return Arr;
 };
 
+var romanReturn =  function(num, pos){
+  var roman = [["D","M"],["C","D","M"],["X","L","C"],["I","V","X"]];
+  var char = "";
+  if(num > 0 && num < 4){
+    for (var i = 0; i < num; i++) {
+      char += roman[pos][0];
+    }
+  } else if (num === 4){
+    char += roman[pos][0]+roman[pos][1];
+  } else if (num > 4 && num < 9 ){
+    char += roman[pos][1];
+    for (var i = 5; i < num; i++) {
+      char += roman[pos][0];
+    }
+  } else if (num === 9){
+    char += roman[pos][0]+roman[pos][2];
+  }
+  return char;
+}
+
+
 
 var convertToRoman = function(userNum){
   var retString = "";
   if (typeChecker(userNum)) {
     var arr = createArray(userNum);
     for (var i = 0; i < arr.length; i++) {
-      if(arr[i] < 4 && arr[i] !== 0){
-
-        for (var j = 0; j < arr[i]; j++) {
-          retString += romanArr[i];
-        }
-      } else if(arr[i] === 4) {
-        retString += romanArr[i];
-        retString += romanArr[i-1];
-      }
+      retString += romanReturn(arr[i],i);
     }
     return retString;
   }else{
+    alert("That wasn't a real number!");
     return false;
   }
-
 };
+
+
+$(function(){
+  $("form#romanNums").submit(function(event) {
+    var result = convertToRoman(parseInt($("#userNum").val()));
+    $("#result").text(result);
+    event.preventDefault();
+  });
+});

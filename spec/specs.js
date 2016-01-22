@@ -24,6 +24,7 @@ describe("createArray", function(){
 
 describe("convertToRoman", function(){
   it("Will take an integer and convert it into roman numerals", function(){
-    expect(convertToRoman(14)).to.equal("XIV")
+    expect(convertToRoman(99)).to.equal("XIV")
   })
 })
+// You also have to separate ones, tens, hundreds, and thousands. In other words, 99 is XCIX, not IC. With Roman numerals, you can't count higher than 3,999 in Roman numerals.
