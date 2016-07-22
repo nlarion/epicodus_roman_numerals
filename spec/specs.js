@@ -17,14 +17,13 @@ describe("wholeQuotient", function(){
 });
 
 describe("createArray", function(){
-  it("Will take an integer and build an array of roman numeral counts", function(){
-    expect(createArray(14)).to.eql([0,0,0,0,1,0,4]);
+  it("Will take an integer and build an array of the number of 1,000's, 100's, 10's, and 1's in a given number", function(){
+    expect(createArray(14)).to.eql([0,0,1,4]);
   });
 });
 
 describe("convertToRoman", function(){
   it("Will take an integer and convert it into roman numerals", function(){
-    expect(convertToRoman(99)).to.equal("XIV")
+    expect(convertToRoman(99)).to.equal("XCIX")
   })
 })
-// You also have to separate ones, tens, hundreds, and thousands. In other words, 99 is XCIX, not IC. With Roman numerals, you can't count higher than 3,999 in Roman numerals.
